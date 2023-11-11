@@ -59,4 +59,5 @@ Route::group(['middleware' => 'auth:api'], function(){
 
 
 // routes for auth
-
+Route::post('/login',[UserController::class, 'login'])->name('login');
+Route::post('/register',[UserController::class, 'register']);
