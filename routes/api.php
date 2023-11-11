@@ -47,3 +47,16 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/storeNotification',[NotificationController::class, 'storeNotification']);
     Route::get('/notificationCount',[NotificationController::class, 'notificationCount']);
 
+    // switch user
+    Route::post('/switch',[RoleController::class, 'switch']);
+    // save promotion data
+    Route::post('/savePromotionData',[BankController::class, 'savePromotionData']);
+
+
+
+    Route::any('/logout',[UserController::class, 'logout']);
+});
+
+
+// routes for auth
+
