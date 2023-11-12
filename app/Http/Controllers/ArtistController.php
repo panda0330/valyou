@@ -14,7 +14,18 @@ class ArtistController extends Controller
     /** 
      * login api 
      * 
-
+     * @return \Illuminate\Http\Response 
+     */ 
+    // fetch all data from artist table
+    public function artistData(){
+        $artist_data= DB::table('artists')->get()->toArray();
+        return response()->json(['status'=>'success','data' => $artist_data], $this-> successStatus); 
+    }
+    // fetch data from artist table against id
+    public function getArtist($id){
+        $data = DB::table('artists')->where('id',$id)->get()->toArray();
+        return response()->json(['status'=>'success','data' => $data], $this-> successStatus); 
+    }
 
 
 

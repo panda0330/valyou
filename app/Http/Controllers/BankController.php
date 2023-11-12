@@ -150,25 +150,7 @@ class BankController extends Controller
                              Log in or Sign up to Valyou X Music app here to earning by listening to music and investing in artists you like."; 
                          }   
     
-                        $promotion_details = new PromotionDetails;
-                        $promotion_details->promotion_id = $promotion->id;
-                        // already have account in our app
-                        $promotion_details->entity_type = $request->promote_method;
-                        $promotion_details->entity = $item;
-                        $promotion_details->rewarded = 0;
-                        $promotion_details->people = $request->people_count;
-                        $promotion_details->save();
-                    }
-                
-            }
-            //send notification, email, sms
-			
-            return response()->json(['status'=>'success', 'message'=>'Promotion Data Save Successfully'], $this-> successStatus); 
-        } else {
-            
-            return response()->json(['status'=>'error', 'message'=>'You have insufficient balance in wallet.'], $this-> errorStatus);
 
-        }
        
         
     }
