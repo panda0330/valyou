@@ -27,10 +27,6 @@ class ArtistController extends Controller
         return response()->json(['status'=>'success','data' => $data], $this-> successStatus); 
     }
 
-    public function editArtist($id){
-        $artist=Artist::find($id);
-        return response()->json(['status'=>'success','data' => $artist], $this-> successStatus); 
 
-    }
 
 }
