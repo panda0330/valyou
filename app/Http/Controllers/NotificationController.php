@@ -16,6 +16,18 @@ class NotificationController extends Controller
         return response()->json(['status'=>'success','data' => $notification_data], $this-> successStatus); 
     
 }
+public function storeNotification(Request $request){
+    $validator = Validator::make($request->all(), [ 
+        'notification_text' => 'required', 
+        'from_user_id' => 'required', 
+        'to_user_id' => 'required', 
+        'artist_id' => 'required',  
+        'notification_type' => 'required',  
+    ]);
+    if ($validator->fails()) { 
+        return response()->json(['error'=>$validator->errors()], $this-> errorStatus);            
+    }
+    
 
 
 }
