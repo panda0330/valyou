@@ -39,3 +39,12 @@ public function storeNotification(Request $request){
     return response()->json(['status'=>'success','savenotification' => $saveNotification], $this-> successStatus); 
 
 }
+
+public function notificationCount(){
+    $count = Notifications::count();
+    return response()->json(['status'=>'success','Count Notification' => $count], $this-> successStatus); 
+
+
+}
+
+}

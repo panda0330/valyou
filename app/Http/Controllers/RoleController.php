@@ -25,33 +25,5 @@ class RoleController extends Controller
                 $artist_id = $result->id;
                 auth()->user()->roles()->sync(request()->get('role_id'));
                 
-            } else {
-                request()->session()->flash('notify', 'Sorry you do not currently have an Artist account.');
-                request()->session()->flash('button', 'Create Artist');
-                request()->session()->flash('url', route('artist.artist.create'));
-                return redirect()->back();
-            }
-            $url='artist/profile/'.$artist_id;
-            $user_role_id = 2;
-        }
-        if ((int)request()->get('role_id') === 3) {
-            auth()->user()->roles()->sync(request()->get('role_id'));
-            // print_r(auth()->user()->roles());die;
-            if(request()->get('url') != ''){
-                $url=request()->get('url');
-            }else{
-                $url='investor';
-            }
-            $user_role_id = 3;
 
-        }
-        if ((int)request()->get('role_id') === 1) {
-            auth()->user()->roles()->sync(request()->get('role_id'));
-            $url='Admin';
-            $user_role_id = 1;
-        }
-        // $user_id = auth()->user()->id;
-        return response()->json(['status'=>'success','Switch Successfully' => $url], $this-> successStatus); 
-
-    }
 }
