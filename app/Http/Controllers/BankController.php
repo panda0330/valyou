@@ -163,7 +163,13 @@ class BankController extends Controller
             }
             //send notification, email, sms
 			
+            return response()->json(['status'=>'success', 'message'=>'Promotion Data Save Successfully'], $this-> successStatus); 
+        } else {
+            
+            return response()->json(['status'=>'error', 'message'=>'You have insufficient balance in wallet.'], $this-> errorStatus);
 
+        }
+       
         
     }
 
