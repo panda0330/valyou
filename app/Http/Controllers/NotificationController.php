@@ -28,6 +28,14 @@ public function storeNotification(Request $request){
         return response()->json(['error'=>$validator->errors()], $this-> errorStatus);            
     }
     
-
+    $input = array(
+        'notification_type'=>$request->notification_type,
+        'from_user_id'=>$request->from_user_id,
+        'to_user_id'=>$request->to_user_id,
+        'artist_id'=>$request->artist_id,
+        'notification_text'=>$request->notification_text,
+    );
+    $saveNotification = Notifications::create($input);
+    return response()->json(['status'=>'success','savenotification' => $saveNotification], $this-> successStatus); 
 
 }
