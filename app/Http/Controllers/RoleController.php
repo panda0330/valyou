@@ -34,5 +34,16 @@ class RoleController extends Controller
             $url='artist/profile/'.$artist_id;
             $user_role_id = 2;
         }
+        if ((int)request()->get('role_id') === 3) {
+            auth()->user()->roles()->sync(request()->get('role_id'));
+            // print_r(auth()->user()->roles());die;
+            if(request()->get('url') != ''){
+                $url=request()->get('url');
+            }else{
+                $url='investor';
+            }
+            $user_role_id = 3;
+
+        }
 
 }
