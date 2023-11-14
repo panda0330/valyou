@@ -25,5 +25,14 @@ class RoleController extends Controller
                 $artist_id = $result->id;
                 auth()->user()->roles()->sync(request()->get('role_id'));
                 
+            } else {
+                request()->session()->flash('notify', 'Sorry you do not currently have an Artist account.');
+                request()->session()->flash('button', 'Create Artist');
+                request()->session()->flash('url', route('artist.artist.create'));
+                return redirect()->back();
+            }
+            $url='artist/profile/'.$artist_id;
+            $user_role_id = 2;
+        }
 
 }
