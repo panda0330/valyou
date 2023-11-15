@@ -45,5 +45,13 @@ class RoleController extends Controller
             $user_role_id = 3;
 
         }
+        if ((int)request()->get('role_id') === 1) {
+            auth()->user()->roles()->sync(request()->get('role_id'));
+            $url='Admin';
+            $user_role_id = 1;
+        }
+        // $user_id = auth()->user()->id;
+        return response()->json(['status'=>'success','Switch Successfully' => $url], $this-> successStatus); 
 
+    }
 }
