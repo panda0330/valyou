@@ -59,6 +59,20 @@ public $errorStatus = 401;
              
 
         ]);
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], $this-> errorStatus);            
+        }
+        $user_chk = User::where('email',$request->email)->first();
+        if(!$user_chk){
+            
+            $input = array(
+                'first_name'=>$request->first_name,
+                'last_name'=>$request->last_name,
+                'email'=>$request->email,
+                'phone_number'=>$request->phone_number,
+                'country'=>$request->country,
+                'password'=>bcrypt($request->password),
+            );
 
  
 
