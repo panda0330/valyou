@@ -48,6 +48,17 @@ public $errorStatus = 401;
      * 
      * @return \Illuminate\Http\Response 
      */ 
+    public function register(Request $request) 
+    { 
+        $validator = Validator::make($request->all(), [ 
+            'first_name' => 'required', 
+            'last_name' => 'required', 
+            'email' => 'required|email', 
+            'password' => 'required',  
+            'phone_number' => 'required', 
+             
+
+        ]);
 
  
 
