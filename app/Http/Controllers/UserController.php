@@ -73,6 +73,23 @@ public $errorStatus = 401;
                 'country'=>$request->country,
                 'password'=>bcrypt($request->password),
             );
+            // print_r($input);die;
+            //image upload
+            if ($request->file('avatar')) {
+                $image = $request->file('avatar');
+                $imageName = $image->getClientOriginalName();
+                $destinationPath = 'uploads/images/';
+                $image->move(public_path($destinationPath), $imageName);
+                $input['avatar'] = 'uploads/images/'.$imageName;
+            }
+            // print_r($input);die;
+            //
+           $inserted_id = $user = User::create($input); 
+
+            $success['id'] =  $inserted_id->id;
+            $success['first_name'] =  $user->first_name;
+            $success['last_name'] = $user->last_name;
+            $success['email'] =  $user->email;
 
  
 
