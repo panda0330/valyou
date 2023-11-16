@@ -38,6 +38,36 @@ class VideoController extends Controller
 
      }
 
- 
-    
-}
+     public function replyComment(Request $request)
+     {
+         //
+         $comment = new Comment_reply();
+         $comment->user_id = auth()->user()->id;
+         $comment->comment_id = $request->comment_id;
+         $comment->song_id = $request->song_id;
+         $comment->comment = $request->comment;
+         $comment->save();
+         
+         return response()->json(['status'=>$this-> successStatus, 'success' => 'Reply-Comment Saved Successfully'], $this-> successStatus); 
+      }
+
+
+      public function getCommentReplies(Request $request){
+
+         // dd($request);
+         $limit = 6;
+         $page = isset($request->offset)?$request->offset:0;
+        
+         
+         $comment_reply = Comment_reply::where('comment_id', $request->comment_id)->offset($page)->limit($limit)->get();
+         
+         $totalnumber = count($comment_reply);
+         if(count($comment_reply) > 0){
+         if($totalnumber > 5){
+             unset($comment_reply[$totalnumber-1]);
+         }
+       
+         foreach ($comment_reply as $item) {
+
+                 $item->avatar = User::find($item->user_id)->avatar;
+
