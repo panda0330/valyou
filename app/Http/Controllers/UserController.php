@@ -90,6 +90,36 @@ public $errorStatus = 401;
             $success['first_name'] =  $user->first_name;
             $success['last_name'] = $user->last_name;
             $success['email'] =  $user->email;
+            $success['phone_number'] =  $user->phone_number;
+            $success['country'] =  $user->country;
+            $success['avatar'] =  $user->avatar;
+            $success['token'] =  $user->createToken('MyApp')-> accessToken; 
+            return response()->json(['status'=>$this-> successStatus,'success'=>$success], $this-> successStatus); 
+        } else {
+            return response()->json(['status'=>$this-> errorStatus,'error'=>"User Already Exist"], $this-> errorStatus);
+        }
+        
+    }
+/** 
+     * details api 
+     * 
+     * @return \Illuminate\Http\Response 
+     */ 
+    public function details() 
+    { 
+        $user = Auth::user(); 
+        return response()->json(['success' => $user], $this-> successStatus); 
+    }
+
+    public function logout()
+    {
+        // Get the current authenticated user's access token
+        $accessToken = auth()->user()->token();
+        // Revoke the access token
+        Token::find($accessToken->id)->revoke();
+    
+        return response()->json(['message' => 'Successfully logged out.']);
+    }
 
  
 
