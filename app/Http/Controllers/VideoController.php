@@ -70,4 +70,29 @@ class VideoController extends Controller
          foreach ($comment_reply as $item) {
 
                  $item->avatar = User::find($item->user_id)->avatar;
+                 $item->f_name = User::find($item->user_id)->first_name;
+                 $item->l_name = User::find($item->user_id)->last_name;
+               
+                 $success['first_name']  = $item->f_name;
+                 $success['last_name']   = $item->l_name;
+                 $success['id']  = $item->id;
+                 $success['comment'] = $item->comment; 
+                
+             }
+        
+         } 
+         return response()->json(['status'=>'success','comment-reply' => $success], $this-> successStatus); 
+
+     
+     }
+            public function deleteReply(Request $request)
+            {
+               $comment =  Comment_reply::find($request->id);
+               if ($comment) {
+                     $comment->delete();
+                     return response()->json(['status'=>'success','comment-reply' => 'Comment Reply Deleted Successfully'], $this-> successStatus); 
+                  }
+               
+            }
+
 
