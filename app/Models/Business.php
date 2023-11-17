@@ -19,10 +19,6 @@ class Business extends Model
         'website',
         'instagram',
         'facebook',
-        'twitter',
-        'youtube',
-        'otherlink',
-        'user_id',
-        'photo'
+
     ];
 }
