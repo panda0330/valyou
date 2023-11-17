@@ -14,9 +14,7 @@ class Comment_reply extends Model
         'user_id',
         'song_id', 
         'comment', 
-        'status', 
-        'created_at', 
-        'updated_at' 
+
        
     ];
 }
