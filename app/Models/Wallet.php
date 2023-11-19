@@ -23,8 +23,5 @@ class Wallet extends Model
     {
         return $this->belongsTo(User::class,'from_user_id','id');
     }
-    final public function artist(): BelongsTo
-    {
-        return $this->belongsTo(Artist::class,'artist_id','id');
-    }
+
 }
