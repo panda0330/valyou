@@ -20,10 +20,6 @@ class VideoUploads extends Model
     public function comments(){
         return $this->hasMany(Comment::class, 'song_id', 'id');
     }
-    final public function artist(): BelongsTo
-    {
-        return $this->belongsTo(artist::class,'artist_id','id');
-    }
 
 
 }
